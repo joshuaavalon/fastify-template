@@ -1,0 +1,20 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("APP__DATABASE__URL")
+  // extensions = [uuidOssp(map: "uuid-ossp"), pg_trgm]
+}
+
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["relationJoins", "nativeDistinct"]
+}
+
+model User {
+  id           String   @id @default(uuid())
+  name         String   @unique
+  passwordHash String   @map("password_hash")
+  email        String   @unique
+  isAdmin      Boolean  @map("is_admin")
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @default(now()) @updatedAt @map("updated_at")
+}

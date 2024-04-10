@@ -1,0 +1,86 @@
+{
+  "name": "@joshuaavalon/fastify-template",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "start": "node --enable-source-maps dist/index.js | pino-pretty",
+    "lint": "eslint src",
+    "db:dev": "prisma migrate dev --name temp",
+    "db:deploy": "prisma migrate deploy",
+    "db:generate": "prisma generate",
+    "db:studio": "prisma studio",
+    "db:reset": "prisma migrate reset --force --skip-generate"
+  },
+  "keywords": [],
+  "author": "Joshua Avalon",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joshuaavalon/fastify-template.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joshuaavalon/fastify-template/issues"
+  },
+  "homepage": "https://github.com/joshuaavalon/fastify-template#readme",
+  "module": "./dist/index.js",
+  "imports": {
+    "#type": {
+      "import": "./dist/type/index.js"
+    },
+    "#config": {
+      "import": "./dist/config/index.js"
+    },
+    "#error": {
+      "import": "./dist/error/index.js"
+    },
+    "#init": {
+      "import": "./dist/init/index.js"
+    },
+    "#plugins/*": {
+      "import": "./dist/plugins/*/index.js"
+    },
+    "#routes": {
+      "import": "./dist/routes/index.js"
+    },
+    "#utils": {
+      "import": "./dist/utils/index.js"
+    }
+  },
+  "exports": {},
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "@joshuaavalon/eslint-config-typescript": "^7.1.1",
+    "@types/luxon": "^3.4.2",
+    "@types/node": "^20.11.28",
+    "@types/qs": "^6.9.14",
+    "@types/uuid": "^9.0.8",
+    "eslint": "^8.57.0",
+    "globals": "^14.0.0",
+    "prisma": "^5.12.1",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.4.2"
+  },
+  "dependencies": {
+    "@fastify/cookie": "^9.3.1",
+    "@fastify/secure-session": "^7.1.0",
+    "@prisma/client": "^5.12.1",
+    "@sinclair/typebox": "^0.32.20",
+    "argon2": "^0.40.1",
+    "dotenv": "^16.4.5",
+    "fastify": "^4.26.2",
+    "fastify-plugin": "^4.5.1",
+    "luxon": "^3.4.4",
+    "pino-pretty": "^11.0.0",
+    "qs": "^6.12.0",
+    "read-env-vars": "^1.1.1",
+    "uuid": "^9.0.1"
+  }
+}
